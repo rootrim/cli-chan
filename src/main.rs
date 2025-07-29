@@ -1,4 +1,8 @@
+use colored::Colorize;
+
 #[tokio::main]
 async fn main() {
-    println!("Goodbye, JoJo!");
+    let name = "JoJo".blue().bold();
+    let message = "Goodbye".red().italic();
+    println!("{message}, {name}!");
 }
