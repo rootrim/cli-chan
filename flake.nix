@@ -46,6 +46,7 @@
           buildInputs = [
             rustToolchain
             pkgs.pkg-config
+            pkgs.openssl
           ];
         };
       }
