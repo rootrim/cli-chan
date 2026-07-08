@@ -32,6 +32,7 @@
           nativeBuildInputs = with pkgs; [
             rust-analyzer
             clippy
+            rustfmt
             pkg-config
             openssl
           ];
