@@ -25,6 +25,7 @@
           src = ./.;
 
           nativeBuildInputs = with pkgs; [pkg-config];
+          buildInputs = with pkgs; [openssl];
         };
 
         devShells.default = pkgs.mkShell {
@@ -32,6 +33,7 @@
             rust-analyzer
             clippy
             pkg-config
+            openssl
           ];
         };
       };
