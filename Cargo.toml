@@ -2,6 +2,10 @@
 name = "cli-chan"
 version = "0.1.0"
 edition = "2021"
+authors = ["Linium <bltyusuf03@gmail.com>", "trim <omuaz01@gmail.com>"]
+description = "A cli AI anime girl app for those who live in terminal."
+license = "GPL-3.0-only"
+repository = "https://github.com/LiniHub/cli-chan"
 
 [dependencies]
 colored = "3.0.0"
