@@ -1,14 +1,14 @@
 use serde::Deserialize;
 use std::collections::HashMap;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, PartialEq, Eq, Debug)]
 pub struct Config {
-    anime_girls: HashMap<String, Personality>,
+    pub personality: HashMap<String, Personality>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, PartialEq, Eq, Debug)]
 pub struct Personality {
-    personality: String,
+    prompt: String,
     hobbies: Option<Vec<String>>,
 }
 
@@ -16,7 +16,7 @@ impl Personality {
     pub fn summary(&self) -> String {
         let mut summary = String::new();
 
-        summary.push_str(&self.personality);
+        summary.push_str(&self.prompt);
 
         if let Some(hobbies) = &self.hobbies {
             match hobbies.len() {
@@ -29,7 +29,9 @@ impl Personality {
                         hobbie_string.push_str(&format!("{hobbie}, "));
                     }
                     let [.., second_last, last] = hobbies.as_slice() else {
-                        unreachable!("If you see this in production, you are the God's choosen one, go and make that 4th temple.")
+                        unreachable!(
+                            "If you see this in production, you are the God's choosen one, go and make that 4th temple."
+                        )
                     };
                     hobbie_string.push_str(&format!("{second_last} and {last}"));
 
@@ -53,7 +55,7 @@ mod test {
                 .to_string();
 
         let personality = Personality {
-            personality: personlaity_text,
+            prompt: personlaity_text,
             hobbies: Some(vec!["coding".into()]),
         };
 
@@ -67,7 +69,7 @@ mod test {
                 .to_string();
 
         let personality = Personality {
-            personality: personlaity_text,
+            prompt: personlaity_text,
             hobbies: Some(vec!["anime".into(), "coding".into(), "hacking".into()]),
         };
 
@@ -81,7 +83,7 @@ mod test {
                 .to_string();
 
         let personality = Personality {
-            personality: personlaity_text,
+            prompt: personlaity_text,
             hobbies: None,
         };
 
@@ -90,5 +92,26 @@ mod test {
             "You are Kuro, a jaded terminal spirit who has lived inside command lines for decades."
                 .to_string()
         );
+    }
+
+    #[test]
+    fn deserialization() {
+        let config = Config {
+            personality: {
+                let mut hash_map = HashMap::new();
+                hash_map.insert("kuro".into(), Personality { prompt: "You are Kuro, a jaded terminal spirit who has lived inside command lines for decades.".into(), hobbies: Some(vec!["hacking".into(), "coding".into()]) });
+                hash_map
+            },
+        };
+
+        let toml_text = r#"
+[personality.kuro]
+prompt = "You are Kuro, a jaded terminal spirit who has lived inside command lines for decades."
+hobbies = [ "hacking", "coding" ]
+        "#;
+
+        let tomul = toml::from_str::<Config>(toml_text).unwrap();
+
+        assert_eq!(tomul, config)
     }
 }

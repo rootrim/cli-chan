@@ -5,9 +5,9 @@ Supports Gemini API *for now*.
 
 Current Progress:  
 - [x] Basic api usage.
-- [ ] TOML config file.
-    - [ ] Multiple personality support.
-- [ ] History.
+- [x] TOML config file.
+    - [x] Multiple personality support.
+- [ ] Conversation history.
 - [ ] Extended functionality.
 - [ ] Extended api usage.
 
@@ -49,12 +49,27 @@ Commands:
 
 Options:
   -a, --api-key <API_KEY>  API key
+  -c, --config <CONFIG>    Config file
   -h, --help               Print help
   -V, --version            Print version
 ```
 
+```txt
+Send message to cli-chan
+
+Usage: cli-chan send <ANIME_GIRL> <TEXT>
+
+Arguments:
+  <ANIME_GIRL>  Chose which anime girl you'll send the message to (noGirl to ignore config)
+  <TEXT>        The string which you will send to the anime girl
+
+Options:
+  -h, --help  Print help
+```
+
 ```bash
 # use --api-key to set the api key inline or add it as GEMINI_API_KEY environment variable
-cli-chan send "what does くりかえす mean, do not use any markdown" 
-cli-chan help
+# using `noGirl`  as anime_girl makes it ignore config file
+cli-chan send noGirl "what does くりかえす mean, do not use any markdown" 
+cli-chan send yuno "How are you fairing my love?" 
 ```
