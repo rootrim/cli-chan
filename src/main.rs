@@ -3,6 +3,7 @@ use clap::{Parser, Subcommand};
 use reqwest::Client;
 use std::error::Error;
 
+mod config;
 mod provider;
 
 #[derive(Parser)]
