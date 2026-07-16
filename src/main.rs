@@ -83,7 +83,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
                 config
                     .personality
                     .get(&anime_girl)
-                    .expect("You haven't declared that Anime Girl in config file did you?")
+                    .ok_or("You haven't declared that Anime Girl in config file did you?")?
                     .summary(),
             ))
         } else {
