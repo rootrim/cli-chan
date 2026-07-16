@@ -25,10 +25,14 @@ impl Personality {
                 _ => {
                     let mut hobbie_string = String::new();
                     hobbie_string.push_str("Your hobbies are ");
-                    for hobbie in &hobbies[..hobbies.len().saturating_sub(1)] {
+                    for hobbie in &hobbies[..hobbies.len() - 2] {
                         hobbie_string.push_str(&format!("{hobbie}, "));
                     }
-                    hobbie_string.push_str(hobbies.last().unwrap());
+                    let [.., second_last, last] = hobbies.as_slice() else {
+                        unreachable!("If you see this in production, you are the God's choosen one, go and make that 4th temple.")
+                    };
+                    hobbie_string.push_str(&format!("{second_last} and {last}"));
+
                     summary.push_str(&format!(" {hobbie_string}."));
                 }
             }
@@ -64,10 +68,10 @@ mod test {
 
         let personality = Personality {
             personality: personlaity_text,
-            hobbies: Some(vec!["coding".into(), "hacking".into()]),
+            hobbies: Some(vec!["anime".into(), "coding".into(), "hacking".into()]),
         };
 
-        assert_eq!(personality.summary(), "You are Kuro, a jaded terminal spirit who has lived inside command lines for decades. Your hobbies are coding, hacking.".to_string());
+        assert_eq!(personality.summary(), "You are Kuro, a jaded terminal spirit who has lived inside command lines for decades. Your hobbies are anime, coding and hacking.".to_string());
     }
 
     #[test]
