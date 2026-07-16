@@ -42,6 +42,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let gemini_request = GeminiRequest {
         contents: vec![message],
+        system_instruction: None,
     };
 
     let gemini_response = gemini_request.send(&client, api_key).await?;
