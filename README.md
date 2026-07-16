@@ -7,6 +7,7 @@ Current Progress:
 - [x] Basic api usage.
 - [x] TOML config file.
     - [x] Multiple personality support.
+    - [ ] User config for each anime girl.
 - [ ] Conversation history.
 - [ ] Extended functionality.
 - [ ] Extended api usage.
@@ -69,7 +70,7 @@ Options:
 
 ```bash
 # use --api-key to set the api key inline or add it as GEMINI_API_KEY environment variable
-# using `noGirl`  as anime_girl makes it ignore config file
+# using `noGirl`  as anime_girl makes it ignore the config file
 cli-chan send noGirl "what does くりかえす mean, do not use any markdown" 
 cli-chan send yuno "How are you fairing my love?" 
 ```
