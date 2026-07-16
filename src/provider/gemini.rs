@@ -1,8 +1,6 @@
-use crate::Message;
-use crate::Part;
+use crate::{Message, Part};
 use reqwest::Client;
-use serde::Deserialize;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 const BASE_URL: &str = "https://generativelanguage.googleapis.com/v1beta/models";
 const MODEL: &str = "gemini-2.5-flash-lite";

@@ -1,11 +1,8 @@
-use crate::provider::gemini::GeminiRequest;
-use crate::provider::Message;
-use crate::provider::Part;
-use crate::provider::Role;
-use clap::Parser;
-use clap::Subcommand;
+use crate::provider::{gemini::GeminiRequest, Message, Part, Role};
+use clap::{Parser, Subcommand};
 use reqwest::Client;
 use std::error::Error;
+
 mod provider;
 
 #[derive(Parser)]
