@@ -21,7 +21,7 @@
       in {
         packages.default = naersk'.buildPackage {
           pname = "cli-chan";
-          version = "0.2.0";
+          version = "0.2.1";
           src = ./.;
 
           nativeBuildInputs = with pkgs; [pkg-config];

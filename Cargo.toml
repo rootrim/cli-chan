@@ -1,6 +1,6 @@
 [package]
 name = "cli-chan"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 authors = ["Linium <bltyusuf03@gmail.com>", "trim <omuaz01@gmail.com>"]
 description = "A cli AI anime girl app for those who live in terminal."
